@@ -12,6 +12,13 @@ todo-pw
 
 Start the app and access http://localhost:8080
 
+### Install gemini-cli - https://github.com/google-gemini/gemini-cli
+
+```bash
+$ brew install gemini-cli
+```
+
+
 ### Install gcloud-cli 
 
 ```bash
