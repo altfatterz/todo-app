@@ -47,13 +47,13 @@
                     <span th:text="${todo.task}" class="text-slate-700 font-medium">Task Name</span>
                 </div>
 
-                <form th:hx-delete="'/todos/' + ${todo.id}"
-                      hx-target="closest li"
-                      hx-swap="outerHTML swap:500ms">
+                <form th:hx-post="'/todos/' + ${todo.id} + '/complete'"
+                      hx-target="#todo-list"
+                      hx-swap="outerHTML">
                     <input type="checkbox"
                            onchange="this.form.dispatchEvent(new Event('submit', {bubbles: true}))"
                            class="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 transition duration-150 ease-in-out"
-                           />
+                    />
                 </form>
             </li>
 

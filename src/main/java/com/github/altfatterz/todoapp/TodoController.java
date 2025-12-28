@@ -15,14 +15,14 @@ public class TodoController {
 
     @GetMapping({"/", })
     public String list(Model model) {
-        model.addAttribute("todos", repository.findAll());
+        model.addAttribute("todos", repository.findTodosByCompletedIsFalse());
         return "index";
     }
 
     @PostMapping("/todos")
     public String add(@RequestParam String task, Model model) {
         repository.save(new Todo(null, task, false));
-        model.addAttribute("todos", repository.findAll());
+        model.addAttribute("todos", repository.findTodosByCompletedIsFalse());
         // This tells Thymeleaf to only render the 'todo-list' fragment
         //  inside the index.html file
         return "index :: todo-list";
@@ -32,5 +32,14 @@ public class TodoController {
     @ResponseBody
     public void delete(@PathVariable Long id) {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/todos/{id}/complete")
+    public String complete(@PathVariable Long id, Model model) {
+        repository.findById(id).ifPresent(todo -> {
+            repository.save(new Todo(todo.id(), todo.task(), true));
+        });
+        model.addAttribute("todos", repository.findTodosByCompletedIsFalse());
+        return "index :: todo-list";
     }
 }
