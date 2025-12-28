@@ -14,6 +14,10 @@ spring:
       # This ensures schema.sql is executed to create your tables
       mode: always
 
+  devtools:
+    livereload:
+      enabled: true
+
 # Helpful for debugging HTMX and JDBC queries
 logging:
   level:

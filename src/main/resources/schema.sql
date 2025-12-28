@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS todo (
     id SERIAL PRIMARY KEY,
     task VARCHAR(255) NOT NULL,
-    completed BOOLEAN DEFAULT FALSE
+    completed BOOLEAN DEFAULT FALSE,
+    completed_date TIMESTAMP
 );
