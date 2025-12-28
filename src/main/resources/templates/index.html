@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring TODO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        /* Smooth transitions for HTMX removals */
+        .htmx-swapping {
+            opacity: 0;
+            transition: opacity 500ms ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6">
+
+<div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+    <header class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-slate-800">My Tasks</h1>
+        <p class="text-slate-500 text-sm">Spring Boot + HTMX + Tailwind</p>
+    </header>
+
+    <form hx-post="/todos"
+          hx-target="#todo-list"
+          hx-swap="outerHTML"
+          onsubmit="setTimeout(() => this.reset(), 10)"
+          class="flex gap-2 mb-6">
+        <input type="text"
+               name="task"
+               required
+               placeholder="Add a new task..."
+               class="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+            Add
+        </button>
+    </form>
+
+    <div id="todo-list" th:fragment="todo-list">
+        <ul class="space-y-3">
+            <li th:each="todo : ${todos}"
+                class="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100 group">
+
+                <div class="flex items-center gap-3">
+                    <span th:text="${todo.task}" class="text-slate-700 font-medium">Task Name</span>
+                </div>
+
+                <button th:hx-delete="'/todos/' + ${todo.id}"
+                        hx-target="closest li"
+                        hx-swap="outerHTML swap:500ms"
+                        class="text-slate-400 hover:text-red-500 transition-colors p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+            </li>
+
+            <li th:if="${#lists.isEmpty(todos)}" class="text-center py-10 text-slate-400 italic">
+                All caught up!
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

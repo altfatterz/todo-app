@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: todo-app
+
+  datasource:
+    # Match these to your docker-compose.yml environment variables
+    url: jdbc:postgresql://localhost:5432/todo-db
+    username: todo-user
+    password: todo-pw
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      # This ensures schema.sql is executed to create your tables
+      mode: always
+
+# Helpful for debugging HTMX and JDBC queries
+logging:
+  level:
+    org.springframework.jdbc.core: DEBUG
+    org.springframework.web: DEBUG

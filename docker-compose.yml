@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:16-alpine'
+    environment:
+      - 'POSTGRES_DB=todo-db'
+      - 'POSTGRES_PASSWORD=todo-pw'
+      - 'POSTGRES_USER=todo-user'
+    ports:
+      - '5432:5432'
