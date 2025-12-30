@@ -18,6 +18,18 @@ Start the app and access http://localhost:8080
 $ brew install gemini-cli
 ```
 
+### Running tests
+
+```bash
+# run both unit (surefire plugin) and integration tests (failsafe plugin)
+$ mvn verify
+
+# skip both unit and integration tests
+$ mvn verify -DskipTests
+
+# skip integration tests
+$ mvn verify -DskipITs
+```
 
 ### Install gcloud-cli 
 

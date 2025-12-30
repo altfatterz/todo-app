@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
-class TodoAppTests {
+class TodoAppIT {
 
     @Autowired
     private PostgreSQLContainer postgres;
