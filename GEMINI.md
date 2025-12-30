@@ -1,0 +1,2 @@
+## Gemini Added Memories                                                                                                                                                                                                                          │
+- Do not downgrade Spring Boot.

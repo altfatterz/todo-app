@@ -88,4 +88,20 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>aot-helper</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+            <properties>
+                <spring.datasource.url>jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1</spring.datasource.url>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

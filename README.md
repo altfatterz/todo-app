@@ -31,6 +31,17 @@ $ mvn verify -DskipTests
 $ mvn verify -DskipITs
 ```
 
+### Build native image:
+
+When you run a native build, Spring Boot performs AOT Processing. 
+This isn't just a "compile" step; it actually starts up a "mock" version of your application context to see which beans are needed.
+With the `aot-helper` profile you are telling to use H2 
+
+```bash
+$ mvn -Pnative,aot-helper spring-boot:build-image
+```
+
+
 ### Install gcloud-cli 
 
 ```bash
