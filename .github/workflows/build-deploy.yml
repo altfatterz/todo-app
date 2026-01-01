@@ -13,7 +13,7 @@ env:
 jobs:
   unit-tests:
     # https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -27,7 +27,7 @@ jobs:
         run: mvn test
 
   integration-tests:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -42,7 +42,7 @@ jobs:
 
   build:
     needs: [ unit-tests, integration-tests ]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
