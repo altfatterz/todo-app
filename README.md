@@ -40,6 +40,33 @@ $ mvn -Pnative,aot-helper spring-boot:build-image -DskipUTs
 ```
 
 
+### Service Principal - allows GitHub to talk to Azure.
+
+```bash
+# view all service principals
+$ az ad sp list --all --output=table
+
+$ az ad sp create-for-rbac --name "todo-app-sp" --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group}
+
+This will return something like:
+
+{
+  "appId": "<>",
+  "displayName": "todo-app-sp",
+  "password": "<>",
+  "tenant": "<>"
+}
+
+We need to create AZURE_CREDENTIALS GitHub repo secret with the following format 
+
+{
+  "clientId": "<appId>",
+  "clientSecret": "<password>",
+  "subscriptionId": "YOUR_SUBSCRIPTION_ID",
+  "tenantId": "<tenant>"
+}
+```
+
 ### Install gcloud-cli 
 
 ```bash

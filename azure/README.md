@@ -1,7 +1,7 @@
 # Setup in Azure
 
 ```bash
-export RESOURCE_GROUP='todo-app'
+export RESOURCE_GROUP='todo-app-rg'
 export ACR_NAME='springtodoapp'
 export POSTGRESQL_NAME='todoapp-psql'
 export POSTGRESQL_ADMIN='todoapp_admin'
