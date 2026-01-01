@@ -21,14 +21,11 @@ $ brew install gemini-cli
 ### Running tests
 
 ```bash
-# run both unit (surefire plugin) and integration tests (failsafe plugin)
-$ mvn verify
+# run only unit tests
+$ mvn test
 
-# skip both unit and integration tests
-$ mvn verify -DskipTests
-
-# skip integration tests
-$ mvn verify -DskipITs
+# run only integration tests
+$ mvn verify -DskipUTs
 ```
 
 ### Build native image:
@@ -38,7 +35,8 @@ This isn't just a "compile" step; it actually starts up a "mock" version of your
 With the `aot-helper` profile you are telling to use H2 
 
 ```bash
-$ mvn -Pnative,aot-helper spring-boot:build-image
+# build native image only, skip tests
+$ mvn -Pnative,aot-helper spring-boot:build-image -DskipUTs
 ```
 
 
