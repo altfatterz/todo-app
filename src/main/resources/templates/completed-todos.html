@@ -31,6 +31,12 @@
                     <span th:text="${todo.task}" class="text-slate-700 font-medium">Task Name</span>
                     <span th:text="|Completed: ${#temporals.format(todo.completedDate, 'yyyy-MM-dd HH:mm')}|" class="text-sm text-slate-500">Completion Date</span>
                 </div>
+                <button th:hx-delete="'/todos/' + ${todo.id}"
+                        hx-target="closest li"
+                        hx-swap="outerHTML"
+                        class="text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                    Delete
+                </button>
             </li>
 
             <li th:if="${#lists.isEmpty(todos)}" class="text-center py-10 text-slate-400 italic">
