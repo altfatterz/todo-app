@@ -17,6 +17,13 @@ $ az group create --name $RESOURCE_GROUP --location $REGION
 
 # create an acr instance
 $ az acr create --name $ACR_NAME --resource-group $RESOURCE_GROUP --sku basic
+# Enable the Admin User
+$ az acr update --name $ACR_NAME --admin-enabled true
+# Retrieve the Admin Credentials
+$ az acr credential show --name $ACR_NAME 
+# username is the same as the registry name
+# password will be generated
+# set ACR_USERNAME and ACR_PASSWORD repository secrets in github
 
 $ az postgres flexible-server create \
     --resource-group $RESOURCE_GROUP \
